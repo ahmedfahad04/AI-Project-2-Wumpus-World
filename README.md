@@ -1,16 +1,31 @@
-# React + Vite
+# Wumpus World AI 🤖🕳️💰
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-# Run
-
-`npm run dev`
+Welcome to the Wumpus World AI project, an immersive application showcasing intelligent navigation in a 10x10 grid-based environment. This project harnesses advanced AI techniques like Propositional and First Order Logic, logical inference, probabilistic reasoning, and loop detection to empower the agent to explore, survive, collect gold, and achieve its objectives. 
 
 
-# Live 
-https://wumpus-world-ai.netlify.app/ 
+## Features 🌟
+
+- **10x10 Grid**: 📦
+- **AI Algorithms**: 🧠 Propositional and First Order Logic, Logical inference, probabilistic reasoning
+- **Intuitive UI**: 🎨 Real-time visualization
+- **Gold Collection Logic**: 💰
+- **Breeze and Stench Handling**: 💨💀
+- **Pit Detection and Avoidance**: 🚫🕳️
+- **Loop Prevention**: 🔄 Efficient exploration
+- **Wumpus Elimination**: 🏹🤖
+- **Stench Removal Function**: 🧹
+- **Customizable Settings**: ⚙️ Wumpus, Gold, Pit elements
+- **Daredevil Mode**: 🦸‍♂️ Excitement
+- **Sound Effects**: 🔊 Immersive experience
+
+## How to Run 🏃‍♂️
+
+   ```bash
+   git clone https://github.com/KamruzzamanAsif/Wumpus-World.git
+   npm i
+   npm run dev
+   ```
+## Play the Game Now 🎮
+Experience the Wumpus World AI in action! Play the game live at the [Wumpus World AI Game](https://wumpus-world-ai.netlify.app/)
+
+
