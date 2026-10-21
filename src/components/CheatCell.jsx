@@ -30,8 +30,9 @@ function CheatCell({ id, x, y }) {
   const cellStyle = {
     fontWeight: isAgentCell ? "bold" : "normal",
     backgroundColor: backgroundColor,
-    width: "39px",
-    height: "39px",
+    width: "100%",
+    height: "100%",
+    fontSize: "clamp(0.5rem, 1.3vmin, 0.9rem)",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",

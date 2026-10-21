@@ -1,224 +1,305 @@
-.game-board {
-    display: grid;
-    grid-template-rows: repeat(10, 65px);
-    grid-template-columns: repeat(10, 65px);
-    gap: 2px;
-    /* border: 2px solid blue; */
-    height: 80vh;
-    padding: 1rem;
-    justify-content: right;
-    padding-right: 5rem;
-    /* height: 70vh; */
-}
-
-.cheat-board {
-    display: flex;
-    flex-direction: row;
-}
-
-.pit-board {
-    display: grid;
-    grid-template-rows: repeat(10, 45px);
-    grid-template-columns: repeat(10, 45px);
-    justify-content: center;
-    column-gap: auto;
-    gap: 5px;
-    flex: 5;
-}
-
-.wumpus-board {
-    display: grid;
-    grid-template-rows: repeat(10, 45px);
-    grid-template-columns: repeat(10, 45px);
-    justify-content: center;
-    column-gap: auto;
-    gap: 5px;
-    flex: 5;
-}
+/* ============ Global layout (fluid / responsive) ============ */
 
 .game-container {
     display: flex;
-    /* width: 50vw; */
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 1rem;
+    width: 100%;
+    max-width: 100vw;
+    padding: 0 1rem;
+    box-sizing: border-box;
 }
 
 .left-container {
     display: flex;
-    width: 100%;
-    flex-direction: column;
-    justify-content: left;
-    /* align-items: start; */
-}
-
-.valueCover {
-    /* border: 3px dashed blue; */
-    display: flex;
     flex-direction: column;
     align-items: center;
-    gap: .1rem;
-    margin-left: 1rem;
+    flex: 1 1 46rem;
+    min-width: min(100%, 20rem);
+    max-width: 100%;
 }
 
-.inputSection {
+.right-container {
+    flex: 1 1 30rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    min-width: min(100%, 18rem);
+    max-width: 100%;
+}
+
+/* ============ Main game board ============ */
+
+/* grid wrappers only — let their cells become direct grid items */
+.game-board .row,
+.cheat-board .row {
+    display: contents;
+}
+
+.game-board {
     display: grid;
-    grid-template-rows: repeat(2, 1fr);
-    grid-template-columns: repeat(2, 1fr);
-    /* border: 2px dashed blue; */
-    padding-right: 1.5rem;
-    margin: 0 6rem;
+    grid-template-rows: repeat(10, 1fr);
+    grid-template-columns: repeat(10, 1fr);
+    gap: 4px;
+    width: min(100%, 45rem);
+    aspect-ratio: 1 / 1;
+    padding: 1rem;
+    box-sizing: border-box;
+    justify-content: center;
+}
+
+.box {
+    border: 2px solid brown;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* keep images inside their cells no matter the cell size */
+.box > div,
+.cheat-box > div {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 0;
+}
+
+.box img,
+.cheat-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* the covered cell must fill the whole tile (no letterboxing) */
+.box img[src*="cover"] {
+    object-fit: fill;
+}
+
+/* ============ Probability (cheat) boards ============ */
+
+.cheat-board {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    justify-items: center;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.wumpus-board,
+.pit-board {
+    display: grid;
+    grid-template-rows: repeat(10, 1fr);
+    grid-template-columns: repeat(10, 1fr);
+    gap: 3px;
+    width: 100%;
+    max-width: 24rem;
+    aspect-ratio: 1 / 1;
+    box-sizing: border-box;
+    padding: 0.5rem;
+}
+
+.cheat-box {
+    border: 2px solid brown;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    font-size: clamp(0.5rem, 1.6vmin, 0.9rem);
 }
 
 .grid-heading {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    width: 100%;
+    max-width: 50rem;
 }
 
 .wumpus-board-heading,
 .pit-board-heading {
-    font-size: 1.3rem;
-    /* margin: .5rem; */
+    font-size: clamp(1rem, 2.5vmin, 1.3rem);
     font-weight: bold;
 }
 
 .left-upper-container {
-    /* border: 2px solid green; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
-    /* margin: 1rem; */
+    max-width: 50rem;
     flex: 9;
-    /* Takes 80% of the available vertical space */
 }
+
+/* ============ Controls / bottom section ============ */
 
 .left-bottom-container {
-    /* border: 2.5px dotted darkorchid; */
-    width: 80%;
-    margin-left: 1.5rem;
-    /* margin-top: 1rem; */
-    flex: 1;
-    display: flex;
-    gap: 1.5rem;
-    padding: 0.1rem;
-    /* margin-top: 0.5rem; */
-    display: flex;
-    justify-content: left;
+    width: 100%;
+    max-width: 50rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 36rem), 1fr));
+    gap: 1rem 1.5rem;
+    align-items: start;
+    padding: 0.5rem;
+    box-sizing: border-box;
 }
 
+.gameState {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    align-items: start;
+    width: 100%;
+    min-width: 0;
+}
 
-.right-container {
-    /* border: 2px solid blue; */
-    /* margin-top: 1rem; */
-    flex: 4;
+.inputSection {
+    display: grid;
+    grid-template-rows: repeat(2, auto);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding-right: 0;
+    margin: 0;
+    min-width: 0;
+}
+
+.valueCover {
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
     flex-direction: column;
-    /* width: 80vw; */
+    align-items: center;
+    gap: 0.1rem;
+    margin-left: 0.5rem;
+    min-width: 0;
+}
+
+.playBtnSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 0.8rem;
+    width: 100%;
+}
+
+.text-area {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr));
+    gap: 0.5rem;
+    width: 100%;
+    min-width: 0;
+    padding-left: 0;
+}
+
+.text-box {
+    font-size: clamp(0.85rem, 2vmin, 1.1rem);
+    padding: 0.6rem 0.5rem;
+    background-color: gainsboro;
+    border-radius: 1rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-width: 0;
+    min-height: 2.2rem;
+    height: auto;
+    margin: 0;
+    box-sizing: border-box;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .cheatBtn {
     width: 8rem;
     height: 2rem;
-    margin-top: .6rem;
-    margin-right: .5rem;
+    margin-top: 0.6rem;
+    margin-right: 0.5rem;
 }
-
-.playBtnSection {
-    /* border: 2px solid red; */
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
-    align-items: left;
-    gap: .8rem;
-    width: 40%;
-    /* margin: 1rem 0; */
-}
-
-.text-area {
-    display: flex;
-    /* border-left: 3px dashed brown; */
-    flex-direction: column;
-    justify-content: space-evenly;
-    padding-left: 8rem;
-}
-
-.text-box {
-    /* margin: 0.5rem; */
-    font-size: 1.2rem;
-    /* Decreased font size */
-    padding: 0.7rem;
-    /* Decreased padding */
-    background-color: gainsboro;
-    border-radius: 1rem;
-    /* Decreased border radius */
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: left;
-    width: 140%;
-    height: 1.5rem;
-    /* Let the height adjust to content */
-}
-
-
 
 .upload-group {
     border: 2px solid rgb(0, 0, 0);
     border-radius: 8px;
-    padding: .5rem 1rem;
-    background-color: #FEE6E3;
+    padding: 0.5rem 1rem;
+    background-color: #fee6e3;
     color: black;
     box-shadow: 5px 5px 0 2px;
-}
-
-
-.gameState {
-    /* border: 2px solid blue; */
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    width: 40rem;
-    justify-content: space-around;
-}
-
-.box {
-    border: 2px solid brown;
-    margin: 4px;
-    width: 65px;
-    height: 65px;
+    max-width: 100%;
     box-sizing: border-box;
+}
+
+.upload-group input[type="file"] {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* ============ Message box ============ */
+
+.message-box {
     display: flex;
     justify-content: center;
-    align-items: center;
+    margin-top: 0.5rem;
+    width: 100%;
+    max-width: 50rem;
+    box-sizing: border-box;
 }
 
 .alert-box {
-    display: flex;
     background-color: burlywood;
-    padding: 1rem 16rem;
+    padding: 1rem 2rem;
     border-radius: 2rem;
-    justify-content: center;
-    font-size: 1.1rem;
-}
-
-.message-box {
-    /* border: 2px solid blue; */
-    padding: 0;
-    justify-content: center;
-    margin-top: .5rem;
-}
-
-
-.cheat-box {
-    border: 2px solid brown;
-    margin: 4px;
-    width: 45px;
-    height: 45px;
+    text-align: center;
+    font-size: clamp(0.95rem, 2vmin, 1.1rem);
+    max-width: 100%;
     box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    word-break: break-word;
 }
 
+/* ============ Small screens ============ */
 
-.cheat-cell:hover {
-    background-color: mediumspringgreen;
+@media (max-width: 640px) {
+    .game-container {
+        padding: 0 0.5rem;
+        gap: 0.5rem;
+    }
+
+    .gameState {
+        grid-template-columns: 1fr;
+    }
+
+    .inputSection {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .left-bottom-container {
+        gap: 1rem;
+    }
+
+    .playBtnSection {
+        width: 100%;
+        align-items: stretch;
+    }
+
+    .upload-group {
+        width: 100%;
+    }
+}
+
+/* very narrow phones: one slider per row */
+@media (max-width: 380px) {
+    .inputSection {
+        grid-template-columns: minmax(0, 1fr);
+    }
 }
